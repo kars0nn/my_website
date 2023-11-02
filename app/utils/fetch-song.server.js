@@ -10,7 +10,7 @@
 */
 
 import Updater from 'spotify-oauth-refresher'
-
+require('dotenv').config();
 let api = new Updater({ clientId: process.env.CLIENT_ID, clientSecret: process.env.CLIENT_SECRET });
 
 export async function getSong() {

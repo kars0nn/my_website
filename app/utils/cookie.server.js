@@ -1,4 +1,5 @@
 import { createCookieSessionStorage } from "@remix-run/node"; // or cloudflare/deno
+require('dotenv').config();
 
 export const { getSession, commitSession, destroySession } =
   createCookieSessionStorage({
