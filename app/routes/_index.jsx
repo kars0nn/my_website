@@ -1,10 +1,9 @@
-import { DiscordIcon, EmailIcon, GitHubIcon, SupportIcon } from "~/components/social-icons";
 import { createCSRFToken, validateCSRFToken } from '~/utils/csrf.server';
 import { getSession, commitSession } from '~/utils/cookie.server';
 import { json } from "@remix-run/node";
-import { getSong } from "~/utils/fetch-song.server";
-import { useLoaderData } from '@remix-run/react';
+import { useFetcher, useLoaderData } from '@remix-run/react';
 import { SongCard } from "~/components/song-card";
+import { useEffect } from "react"
 
 export let loader = async ({ request }) => {
   /*  
@@ -15,10 +14,9 @@ export let loader = async ({ request }) => {
 
   let session = await getSession(request.headers.get("Cookie"));
   let csrf = createCSRFToken();
-  let song = await getSong();
   session.set("csrf", csrf);
   return json(
-    { csrf, song },
+    { csrf },
     { headers: { "Set-Cookie": await commitSession(session) } }
   );
 };
@@ -27,27 +25,40 @@ export const meta = () => {
   return [
     { title: "karson's website" },
     { name: "description", content: "see my information here." },
+    { name: "theme-color", content: "#0ea5e9" }
   ];
 };
 
 export default function Index() {
-  let { csrf, song } = useLoaderData();
+  let { csrf } = useLoaderData();
+  let fetcher = useFetcher();
+
+  useEffect(() => {
+    if (fetcher.type === "init") {
+      fetcher.load("/api/get_song");
+    }
+  }, [fetcher]);
+
+  let song = fetcher?.data?.song;
 
   return (
     <>
-      <div className="max-w-2xl m-auto">
-        <div className="grid sm:grid-cols-2 gap-2 place-items-center md:h-screen">
-          <div>
-            <h1 className="font-bold text-5xl pb-3 pt-10 md:pt-0 font-sans">karson d.</h1>
-            <p className="pb-3">Welcome! </p>
-            <span className="flex w-full items-center justify-start gap-3">
-              <GitHubIcon />
-              <DiscordIcon />
-              <EmailIcon />
-              <SupportIcon />
-            </span>
+      <div className="lg:pl-80 lg:pr-80 md:pl-4 md:pr-4 md:m-0 mx-4">
+        <div className="md:flex md:-mx-4 place-items-center justify-center flex-col">
+          <div className="w-full md:w-3/5 bg-white/10 rounded-md shadow-md p-4">
+            <p className='font-bold text-xs pb-3'>
+              Welcome to my website!
+            </p>
+            <h1 className='font-extrabold text-4xl text-yellow-300'>
+              I'm Karson.
+            </h1>
+            {/* <p>I have been learning how to program for 3 years, most of my experience is in Javascript. Most of my projects are just for fun, however I am open to making something for you if you ask!</p> */}
           </div>
-          <div className="mt-6 md:mt-0 min-w-full">
+          <br />
+          <div className="w-full md:w-3/5 bg-white/10 rounded-md shadow-md p-4">
+            <p className='text-sm pb-2 font-bold -translate-y-1 '>
+              my spotify activity:
+            </p>
             <SongCard song={song} />
           </div>
         </div>

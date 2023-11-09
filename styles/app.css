@@ -2,6 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 
+#nprogress .bar {
+    background: #dfff13 !important;
+    height: 3px !important;
+    border-radius: 10px !important;
+}
+
 html::-webkit-scrollbar {
     width: 5px;
     z-index: 5;

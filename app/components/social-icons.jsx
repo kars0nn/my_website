@@ -1,9 +1,9 @@
 import { FaGithub, FaDiscord, FaHeart } from "react-icons/fa";
 import { LuMailPlus } from "react-icons/lu";
 
-export function SocialIconRoot({ children, link }) {
+export function SocialIconRoot({ children, link, title }) {
   return (
-    <div className="p-2 rounded-xl bg-neutral-800 w-auto hover:shadow-md hover:cursor-pointer hover:drop-shadow-md shadow-gray-500 transition-all duration-100 ease-in-out">
+    <div title={title} className="p-3 rounded-xl bg-white/20 shadow-sm hover:bg-white/25 w-auto hover:shadow-md hover:cursor-pointer transition-all duration-100 ease-in-out">
       <a
         target="_blank"
         rel="noreferrer noopener"
@@ -17,7 +17,7 @@ export function SocialIconRoot({ children, link }) {
 
 export function GitHubIcon() {
   return (
-    <SocialIconRoot link={"https://github.com/kars0nn"}>
+    <SocialIconRoot title="view my github!" link={"https://github.com/kars0nn"}>
       <FaGithub className="text-3xl" />
     </SocialIconRoot>
   );
@@ -25,7 +25,7 @@ export function GitHubIcon() {
 
 export function DiscordIcon() {
   return (
-    <SocialIconRoot>
+    <SocialIconRoot title="join my discord!">
       <FaDiscord className="text-3xl" />
     </SocialIconRoot>
   );
@@ -33,7 +33,7 @@ export function DiscordIcon() {
 
 export function EmailIcon() {
   return (
-    <SocialIconRoot link={"mailto:karson@dkarson.com"}>
+    <SocialIconRoot title="email me! (not set up yet)" link={"mailto:admin@karson.lol"}>
       <LuMailPlus className="text-3xl" />
     </SocialIconRoot>
   )
@@ -41,11 +41,11 @@ export function EmailIcon() {
 
 export function SupportIcon() {
   return (
-    <div className="p-1 hover:p-1.5 rounded-xl bg-pink-400/20 text-pink-500 border-4 border-pink-500 hover:border-2 w-auto hover:shadow-md hover:cursor-pointer hover:drop-shadow-md shadow-gray-500 transition-all duration-100 ease-in-out">
+    <div title="support me!" className="p-3 rounded-xl hover:animate-jump animate-once bg-white/20 shadow-sm hover:bg-white/25 w-auto hover:shadow-md hover:cursor-pointer transition-all duration-100 ease-in-out text-pink-300">
       <a
         target="_blank"
         rel="noreferrer noopener"
-        href={"https://dkarson.com"}
+        href="https://karson.lol"
       >
         <FaHeart title="Support me" className="text-3xl" />
       </a>
