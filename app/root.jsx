@@ -40,7 +40,7 @@ export default function App() {
         <Meta />
         <Links />
       </head>
-      <body className="text-white bg-no-repeat min-h-screen bg-gradient-to-tr to-sky-600 from-cyan-500">
+      <body className="text-white bg-no-repeat min-h-screen bg-neutral-900">
         <Navigation>
           <Outlet />
         </Navigation>
@@ -62,11 +62,9 @@ export function Navigation({ children }) {
           <NavigationLink content={"Blog"} link={"/blog"} />
           <NavigationLink content={"Uptime"} link={"https://uptime.karson.lol"} />
         </div>
-        <div className="md:hidden flex-col space-y-4 lg:flex lg:space-y-0 lg:flex-row lg:items-center lg:space-x-10 lg:mt-0">
-          <a className="bg-white/10 p-3 rounded-lg shadow-md" href="https://uptime.karson.lol" target="_blank" rel="noreferrer noopener" >
-            uptime
-          </a>
-        </div>
+        <a className="bg-white/10 p-3 rounded-lg shadow-md md:hidden" href="https://uptime.karson.lol" target="_blank" rel="noreferrer noopener" >
+          uptime
+        </a>
       </div>
       {children}
     </>

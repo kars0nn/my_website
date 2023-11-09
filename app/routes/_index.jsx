@@ -49,7 +49,7 @@ export default function Index() {
             <p className='font-bold text-xs pb-3'>
               Welcome to my website!
             </p>
-            <h1 className='font-extrabold text-4xl text-yellow-300'>
+            <h1 className='font-extrabold text-4xl'>
               I'm Karson.
             </h1>
             {/* <p>I have been learning how to program for 3 years, most of my experience is in Javascript. Most of my projects are just for fun, however I am open to making something for you if you ask!</p> */}
